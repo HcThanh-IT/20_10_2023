@@ -151,32 +151,35 @@
                 }
             }
             typewriter();
-            
-    var audio = new Audio('./amthanh.mp3');
-    var audioMuted = false;
+            var audio = new Audio('./amthanh.mp3'); // Đường dẫn đến tệp âm thanh
+    var audioMuted = false; // Ban đầu âm thanh bật
 
     function toggleAudio() {
-        var audioButton = document.getElementById('audioButton');
         if (audioMuted) {
             audio.play();
             audioMuted = false;
-            audioButton.classList.remove('fa-volume-mute');
-            audioButton.classList.add('fa-volume-up');
         } else {
             audio.pause();
             audioMuted = true;
-            audioButton.classList.remove('fa-volume-up');
-            audioButton.classList.add('fa-volume-mute');
+        }
+    }
+    function toggleAudio() {
+        if (audioMuted) {
+            audio.play();
+            audioMuted = false;
+            document.getElementById('audioButton').textContent = "Tắt Âm Thanh";
+        } else {
+            audio.pause();
+            audioMuted = true;
+            document.getElementById('audioButton').textContent = "Bật Âm Thanh";
         }
     }
 
+    // Gọi hàm để bật âm thanh khi trang web tải xong
     window.onload = function () {
-        audio.play();
-        audioMuted = false;
-        document.getElementById('audioButton').classList.add('fa-volume-up');
+        audio.play(); // Bật âm thanh
+        document.getElementById('audioButton').textContent = "Tắt Âm Thanh"; // Cập nhật nút
     };
-</script>
-
         </script>
 
 
@@ -201,7 +204,6 @@
     <div class="audio-button">
         <i id="audioButton" class="fas fa-volume-up" onclick="toggleAudio()"></i>
     </div>
-    
     
     
 
