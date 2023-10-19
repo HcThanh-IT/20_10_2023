@@ -149,27 +149,15 @@
                     setTimeout("typewriter()", iSpeed);
                 }
             }
-
+            window.onload = playAudio;
             typewriter();
-            var audio = document.querySelector('audio');
-            audio.play();
+            function playAudio() {
+                var audio = new Audio('./amthanh.mp3'); // Đường dẫn đến tệp âm thanh
+                audio.play();
+            }
 
-            function typewriter() {
-    // ...
-    if (iIndex != aText.length) {
-        iArrLength = aText[iIndex].length;
-        setTimeout(function() {
-            typewriter();
-            playAudio(); // Gọi hàm playAudio() khi hiệu ứng hoàn thành
-        }, 500);
-    }
-}
-
-function playAudio() {
-    var audio = document.querySelector('audio');
-    audio.play();
-}
-
+            // Gọi hàm để phát âm thanh khi trang web tải xong
+            
         </script>
 
 
