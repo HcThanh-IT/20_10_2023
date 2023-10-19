@@ -173,23 +173,7 @@
 
         </a>
     </div>
-    <audio id="myAudio" autoplay>
-        <source src="./mp3.mp3" type="audio/mpeg">
-        Trình duyệt của bạn không hỗ trợ định dạng âm thanh này.
-    </audio>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var audio = document.getElementById('myAudio');
-            audio.volume = 0; // Tắt âm thanh
-            audio.play();
-
-            // Sau một khoảng thời gian, bạn có thể muốn bật âm thanh lại
-            setTimeout(function() {
-                audio.volume = 1; // Bật lại âm thanh
-            }, 1000); // 1000 milliseconds = 1 giây
-        });
-    </script>
+    <audio src="./mp3.mp3" autoplay></audio> 
 </body>
 
 </html>
