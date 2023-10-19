@@ -9,6 +9,7 @@
     <link rel="icon" href="./img/" type="image/x-icon">
     <title>Flowers</title>
     <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oJ/dD0Ft5RdqJmuINJvLiU1lOTJpg28ST1H+UV/kf6kWiT1LhqOJ51J1Ckdf5a+b5" crossorigin="anonymous">
 
     <style>
         #audioContainer {
@@ -149,15 +150,33 @@
                     setTimeout("typewriter()", iSpeed);
                 }
             }
-            window.onload = playAudio;
             typewriter();
-            function playAudio() {
-                var audio = new Audio('./amthanh.mp3'); // Đường dẫn đến tệp âm thanh
-                audio.play();
-            }
-
-            // Gọi hàm để phát âm thanh khi trang web tải xong
             
+    var audio = new Audio('./amthanh.mp3');
+    var audioMuted = false;
+
+    function toggleAudio() {
+        var audioButton = document.getElementById('audioButton');
+        if (audioMuted) {
+            audio.play();
+            audioMuted = false;
+            audioButton.classList.remove('fa-volume-mute');
+            audioButton.classList.add('fa-volume-up');
+        } else {
+            audio.pause();
+            audioMuted = true;
+            audioButton.classList.remove('fa-volume-up');
+            audioButton.classList.add('fa-volume-mute');
+        }
+    }
+
+    window.onload = function () {
+        audio.play();
+        audioMuted = false;
+        document.getElementById('audioButton').classList.add('fa-volume-up');
+    };
+</script>
+
         </script>
 
 
@@ -179,12 +198,12 @@
 
         </a>
     </div>
-    <div id="audioContainer">
-        <audio autoplay>
-            <source src="./amthanh.mp3" type="audio/mpeg">
-            Trình duyệt của bạn không hỗ trợ định dạng âm thanh này.
-        </audio>
+    <div class="audio-button">
+        <i id="audioButton" class="fas fa-volume-up" onclick="toggleAudio()"></i>
     </div>
+    
+    
+    
 
 
 
