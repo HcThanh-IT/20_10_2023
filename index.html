@@ -12,8 +12,7 @@
 
     <style>
         #audioContainer {
-            position: absolute;
-            top: -1000px; /* Để ẩn nó khỏi màn hình */
+            display: none; /* Ẩn thẻ audio */
         }
     </style>
 </head>
@@ -152,6 +151,25 @@
             }
 
             typewriter();
+            var audio = document.querySelector('audio');
+            audio.play();
+
+            function typewriter() {
+    // ...
+    if (iIndex != aText.length) {
+        iArrLength = aText[iIndex].length;
+        setTimeout(function() {
+            typewriter();
+            playAudio(); // Gọi hàm playAudio() khi hiệu ứng hoàn thành
+        }, 500);
+    }
+}
+
+function playAudio() {
+    var audio = document.querySelector('audio');
+    audio.play();
+}
+
         </script>
 
 
@@ -173,7 +191,15 @@
 
         </a>
     </div>
-    <audio src="./mp3.mp3" autoplay></audio> 
+    <div id="audioContainer">
+        <audio autoplay>
+            <source src="./amthanh.mp3" type="audio/mpeg">
+            Trình duyệt của bạn không hỗ trợ định dạng âm thanh này.
+        </audio>
+    </div>
+
+
+
 </body>
 
 </html>
