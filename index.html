@@ -5,17 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./img/" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>Flowers</title>
-    <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oJ/dD0Ft5RdqJmuINJvLiU1lOTJpg28ST1H+UV/kf6kWiT1LhqOJ51J1Ckdf5a+b5" crossorigin="anonymous">
-
-    <style>
-        #audioContainer {
-            display: none; /* Ẩn thẻ audio */
-        }
-    </style>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -96,6 +90,10 @@
                         css.type = "text/css";
                         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
                         document.body.appendChild(css);
+                        audio.play();
+            audioMuted = false;
+            document.getElementById('audioButton').classList.add('fa-volume-up');
+       
                     };
                 </script>
                 <span class="wrap"></span>
@@ -114,7 +112,7 @@
 
             // set up text to print, each item in array is new line
             var aText = new Array(
-                "20.10.2023 Ngày Phụ Nữ Việt Nam",
+                "20-10-2023 Ngày Phụ Nữ Việt Nam",
                 "Chúc cho bà, mẹ, chị em phụ nữ ",
                 "Luôn xinh đẹp, mạnh khoẻ và hạnh phúc",
                 "Chúc cho những người con gái",
@@ -129,6 +127,8 @@
             var iTextPos = 0; // initialise text position
             var sContents = ''; // initialise contents variable
             var iRow; // initialise current row
+            var audio = new Audio('./amthanh.mp3');
+            var audioMuted = false;
 
             function typewriter() {
                 sContents = ' ';
@@ -150,36 +150,9 @@
                     setTimeout("typewriter()", iSpeed);
                 }
             }
+
             typewriter();
-            var audio = new Audio('./amthanh.mp3'); // Đường dẫn đến tệp âm thanh
-    var audioMuted = false; // Ban đầu âm thanh bật
-
-    function toggleAudio() {
-        if (audioMuted) {
-            audio.play();
-            audioMuted = false;
-        } else {
-            audio.pause();
-            audioMuted = true;
-        }
-    }
-    function toggleAudio() {
-        if (audioMuted) {
-            audio.play();
-            audioMuted = false;
-            document.getElementById('audioButton').textContent = "Tắt Âm Thanh";
-        } else {
-            audio.pause();
-            audioMuted = true;
-            document.getElementById('audioButton').textContent = "Bật Âm Thanh";
-        }
-    }
-
-    // Gọi hàm để bật âm thanh khi trang web tải xong
-    window.onload = function () {
-        audio.play(); // Bật âm thanh
-        document.getElementById('audioButton').textContent = "Tắt Âm Thanh"; // Cập nhật nút
-    };
+            
         </script>
 
 
@@ -193,22 +166,39 @@
         <p class="line-1 anim-typewriter"></p>
         <p class="line-1 anim-typewriter"></p> -->
     </div>
-    <div class="button">
-        <a href="./flower.html">
+    <!-- <div class="button">
+        <a href="flower.html">
             <div id="flower" class="rotate"></div>
 
             <script src="hoa.js"></script>
 
         </a>
+    </div> -->
+    <!-- Nút bật/tắt âm thanh -->
+    <div class="audio-button" onclick="toggleAudio()">
+        <i id="audioButton" class="fas fa-volume-up"></i>
     </div>
-   
-    <div class="audio-control">
-        <button id="audioButton" onclick="toggleAudio()">Bật/Tắt Âm Thanh</button>
-    </div>
-    
+    <!-- Âm thanh -->
+    <audio id="audio" src="./amthanh.mp3"></audio>
+    <script type="text/javascript">
+        var audio = document.getElementById('audio');
+        var audioMuted = false;
 
-
-
+        function toggleAudio() {
+            var audioButton = document.getElementById('audioButton');
+            if (audioMuted) {
+                audio.play();
+                audioMuted = false;
+                audioButton.classList.remove('fa-volume-mute');
+                audioButton.classList.add('fa-volume-up');
+            } else {
+                audio.pause();
+                audioMuted = true;
+                audioButton.classList.remove('fa-volume-up');
+                audioButton.classList.add('fa-volume-mute');
+            }
+        }
+    </script>
 </body>
 
 </html>
